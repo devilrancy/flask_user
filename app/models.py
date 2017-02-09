@@ -5,6 +5,7 @@
 from flask_user import UserMixin
 from flask_user.forms import RegisterForm
 from flask_wtf import FlaskForm
+from flask_wtf import Form
 from wtforms import StringField, SubmitField, validators
 from app.init_app import db
 
@@ -38,6 +39,10 @@ class Role(db.Model):
     name = db.Column(db.String(50), nullable=False, server_default=u'', unique=True)  # for @roles_accepted()
     label = db.Column(db.Unicode(255), server_default=u'')  # for display purposes
 
+class Codes_T(db.Model):
+    __tablename__ = 'Codes_T'
+    id = db.Column(db.Integer(), primary_key=True)
+    codenumber = db.Column(db.String(50), nullable=False, server_default=u'', unique=True)  # for @roles_accepted()
 
 # Define the UserRoles association model
 class UsersRoles(db.Model):
@@ -63,3 +68,13 @@ class UserProfileForm(FlaskForm):
     last_name = StringField('Last name', validators=[
         validators.DataRequired('Last name is required')])
     submit = SubmitField('Save')
+
+# class UserCodeForm(FlaskForm):
+#     code_name = StringField('Code', validators=[
+#         validators.DataRequired('Code is required')
+#     ])
+#     submit = SubmitField('Save')
+
+class CheckForm(Form):
+    some_code = StringField('Code: ',validators=[])
+    submit = SubmitField('Check it!')

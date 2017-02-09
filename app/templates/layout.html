@@ -16,6 +16,23 @@
         <!--[if lt IE 9]>
             <script src="{{ url_for('static', filename='bootstrap/js/html5shiv.min.js') }}"></script>
             <script src="{{ url_for('static', filename='bootstrap/js/respond.min.js') }}"></script>
+            <script>
+                function isInArray(value, array) {
+                  return array.indexOf(value) > -1;
+                }
+            function myFunction() {
+                var x, text;
+
+                x = document.getElementById("id-code").value;
+                var myNumbers = [1,2]
+                if (isInArray(x, myNumbres)) {
+                    text = "Code not valid";
+                } else {
+                    text = "Code OK";
+                }
+                document.getElementById("span-text").innerHTML = text;
+            }
+            </script>
         <![endif]-->
 
         <!-- Application specific CSS-->
